@@ -86,18 +86,28 @@ function eliminateCards() {
 // general response to click event
 function flipCard(event) {
     var cell = event.currentTarget;
+    // temporary store cell id
     openedCardsId.push(cell.id);
     var cellContent = '<img src=' + cellNames[cell.id] + '>'
     cell.innerHTML = cellContent;
+    // temporary store cell content
     nowOpened.push(cellContent);
+    // if no cards opened
     if (openedCards === 0) {
         openedCards += 1;
     } else {
         openedCards = 0;
+        // if cards content is different
         if (nowOpened[0] !== nowOpened[1]) {
             setTimeout(flipCardsBack, 1000);
-        } else {
+        // if cards content is the same
+        } else if (openedCardsId[0] !== openedCardsId[1]) {
             setTimeout(eliminateCards, 1000);
+        // if the same card clicked twice
+        } else {
+            openedCards = 1;
+            nowOpened.pop(cellContent);
+            openedCardsId.pop(cell.id);
         }
     }
 }
