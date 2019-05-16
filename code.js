@@ -63,6 +63,15 @@ function shuffle(array) {
     return array;
 }
 
+// makes back of cards
+function makeBackground() {
+    var table = document.getElementById("gametable");
+    var cells = table.getElementsByTagName("td");
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].innerHTML = '<img src="background.png">';
+    }  
+}
+
 // if cards different
 function flipCardsBack() {
     for (var i = 0; i < 2; i++) {
@@ -99,10 +108,10 @@ function flipCard(event) {
         openedCards = 0;
         // if cards content is different
         if (nowOpened[0] !== nowOpened[1]) {
-            setTimeout(flipCardsBack, 1000);
+            setTimeout(flipCardsBack, 750);
         // if cards content is the same
         } else if (openedCardsId[0] !== openedCardsId[1]) {
-            setTimeout(eliminateCards, 1000);
+            setTimeout(eliminateCards, 750);
         // if the same card clicked twice
         } else {
             openedCards = 1;
@@ -114,6 +123,7 @@ function flipCard(event) {
 
 window.onload = function() {
     makeRandomLocationsAndImages();
+    makeBackground();
     checkClick();
 }
 
