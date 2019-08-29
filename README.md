@@ -1,2 +1,2 @@
 # Memory-card-game
-Game in which you search pairs of identical cards.
+Game in which your goal is to find pairs of identical cards.
